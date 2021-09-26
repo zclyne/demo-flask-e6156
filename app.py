@@ -37,6 +37,17 @@ def get_users():
     rsp = Response(json.dumps(res, default=str), status=200, content_type="application/json")
     return rsp
 
+@app.route('/users/first_name_prefix/<prefix>')
+def get_users_by_first_name_prefix(prefix):
+    res = UserResource.get_by_first_name_prefix(prefix)
+    rsp = Response(json.dumps(res, default=str), status=200, content_type="application/json")
+    return rsp
+
+@app.route('/users/last_name_prefix/<prefix>')
+def get_users_by_last_name_prefix(prefix):
+    res = UserResource.get_by_last_name_prefix(prefix)
+    rsp = Response(json.dumps(res, default=str), status=200, content_type="application/json")
+    return rsp
 
 @app.route('/<db_schema>/<table_name>/<column_name>/<prefix>')
 def get_by_prefix(db_schema, table_name, column_name, prefix):
